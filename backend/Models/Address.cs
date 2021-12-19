@@ -20,6 +20,6 @@ namespace backend.Models
         public string OptionalAddOns { get; set; }
 
         [Required]
-        public string Cep { get; set; }
+        public int Cep { get; set; }
     }
 }
