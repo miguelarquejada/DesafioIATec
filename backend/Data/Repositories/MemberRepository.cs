@@ -71,5 +71,33 @@ namespace backend.Data.Repositories
             _context.Member.Remove(await GetById(id));
             await _context.SaveChangesAsync();
         }
+
+        public async Task<int> GetMemberTotal()
+        {
+            return await _context.Member.CountAsync();
+        }
+
+        public async Task<int> GetTotalBaptizedMembers()
+        {
+            return await _context.Member.Where(m => m.IsBaptized == true).CountAsync();
+        }
+
+        public async Task<Member> GetOldestMember()
+        {
+            return await _context.Member.Include(m => m.Address)
+                .AsNoTracking().OrderBy(m => m.Birthday).FirstOrDefaultAsync();
+        }
+
+        public async Task<DateTime> GetMostRecentBaptism()
+        {
+            var member = await _context.Member.OrderByDescending(m => m.BaptismDate).FirstOrDefaultAsync();
+            return (DateTime)member.BaptismDate;
+        }
+
+        public async Task<IEnumerable<Member>> GetAllBaptizedMembers()
+        {
+            return await _context.Member.Include(m => m.Address)
+                .AsNoTracking().Where(m => m.IsBaptized == true).ToListAsync();
+        }
     }
 }

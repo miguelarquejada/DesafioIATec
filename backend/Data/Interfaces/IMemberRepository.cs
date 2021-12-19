@@ -17,11 +17,17 @@ namespace backend.Data.Interfaces
         Task<Member> GetById(long id);
 
         /// <summary>
-        /// Get alll members
+        /// Get all members
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Member>> GetAll();
-        
+
+        /// <summary>
+        /// Get all baptized members
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Member>> GetAllBaptizedMembers();
+
         /// <summary>
         /// Update member by id
         /// </summary>
@@ -50,5 +56,27 @@ namespace backend.Data.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task Delete(long id);
+
+        /// <summary>
+        /// Get numbers of members
+        /// </summary>
+        /// <returns></returns>
+        Task<int> GetMemberTotal();
+
+        /// <summary>
+        /// Get number of baptized members
+        /// </summary>
+        Task<int> GetTotalBaptizedMembers();
+
+        /// <summary>
+        /// Get oldest member
+        /// </summary>
+        Task<Member> GetOldestMember();
+
+        /// <summary>
+        /// Get most recent baptism date
+        /// </summary>
+        /// <returns></returns>
+        Task<DateTime> GetMostRecentBaptism();
     }
 }

@@ -14,12 +14,10 @@ namespace backend.Controllers
     [Route("[controller]")]
     public class MemberController : ControllerBase
     {
-        private readonly ApplicationContext _context;
         private readonly IMemberRepository _memberRepository;
 
-        public MemberController(ApplicationContext context, IMemberRepository memberRepository)
+        public MemberController(IMemberRepository memberRepository)
         {
-            _context = context;
             _memberRepository = memberRepository;
         }
 
