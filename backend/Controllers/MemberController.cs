@@ -44,7 +44,7 @@ namespace backend.Controllers
         {
             try
             {
-                if (id != updatedMember.Id)
+                if (!ModelState.IsValid || id != updatedMember.Id)
                     return BadRequest();
 
                 var member = await _memberRepository.GetById(id);
@@ -63,6 +63,9 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Member>> Post(Member newMember)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
             var member = await _memberRepository.Insert(newMember);
             return CreatedAtAction(
                 nameof(GetById),

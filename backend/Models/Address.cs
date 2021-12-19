@@ -8,14 +8,18 @@ namespace backend.Models
 {
     public class Address
     {
+        [Key]
         public long Id { get; set; }
 
+        [Required]
         public int Number { get; set; }
 
+        [Required]
         public string HouseStreet { get; set; }
 
         public string OptionalAddOns { get; set; }
 
+        [Required]
         public string Cep { get; set; }
     }
 }
