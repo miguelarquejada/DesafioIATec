@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
 {
-    public partial class MemberAddress : Migration
+    public partial class ModelsAndContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace backend.Migrations
                 name: "Address",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<int>(type: "int", nullable: false),
                     HouseStreet = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OptionalAddOns = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,10 +27,11 @@ namespace backend.Migrations
                 name: "Member",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsBaptized = table.Column<bool>(type: "bit", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddressId = table.Column<long>(type: "bigint", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BaptismDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

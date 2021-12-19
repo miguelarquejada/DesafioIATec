@@ -8,13 +8,13 @@ namespace backend.Models
 {
     public class Member
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 
         public bool IsBaptized { get; set; }
 
-        public Guid AddressId { get; set; }
+        public long AddressId { get; set; }
 
         public DateTime Birthday { get; set; }
 

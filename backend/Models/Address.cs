@@ -8,7 +8,7 @@ namespace backend.Models
 {
     public class Address
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public int Number { get; set; }
 

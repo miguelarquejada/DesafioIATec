@@ -21,9 +21,10 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Cep")
                         .HasColumnType("nvarchar(max)");
@@ -44,12 +45,13 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Member", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("BaptismDate")
                         .HasColumnType("datetime2");

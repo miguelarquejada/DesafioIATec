@@ -10,8 +10,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211219033427_MemberAddress")]
-    partial class MemberAddress
+    [Migration("20211219152035_ModelsAndContext")]
+    partial class ModelsAndContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,10 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Cep")
                         .HasColumnType("nvarchar(max)");
@@ -46,12 +47,13 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Member", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("AddressId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("BaptismDate")
                         .HasColumnType("datetime2");
