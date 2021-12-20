@@ -25,13 +25,17 @@ import {MatSelectModule} from '@angular/material/select';
 import { ListMembersComponent } from './views/home/list-members/list-members.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReportMembersComponent } from './views/report-members/report-members.component';
+import { NavBarComponent } from './views/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     InsertMemberDialogComponent,
-    ListMembersComponent
+    ListMembersComponent,
+    ReportMembersComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

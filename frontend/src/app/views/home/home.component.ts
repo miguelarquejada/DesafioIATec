@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { InsertMemberDialogComponent } from './insert-member-dialog/insert-member-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +7,8 @@ import { InsertMemberDialogComponent } from './insert-member-dialog/insert-membe
 })
 export class HomeComponent implements OnInit {
 
-  constructor(
-    public dialog: MatDialog
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  addMember(): void {
-    const dialogRef = this.dialog.open(InsertMemberDialogComponent, {
-      minWidth: '400px',
-      data: { 
-        isAddDialog: true 
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 }
