@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Novo membro</h1>
+<div mat-dialog-content>
+    <form class="d-flex flex-column" [formGroup]="memberForm">
+        <h3>Dados do membro</h3>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="" formControlName="name" name="name">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <mat-label>Dt. Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Batizado</mat-label>
+            <mat-select formControlName="isBaptized" (selectionChange)="onIsBaptizedChange()">
+                <mat-option [value]="false">Não</mat-option>
+                <mat-option [value]="true">Sim</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <mat-label>Dt. Batismo</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <h3 style="margin-top: 10px;">Dados de endereço</h3>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Cep</mat-label>
+            <input matInput type="number" placeholder="" formControlName="cep" name="cep">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <mat-label>Rua</mat-label>
+            <input matInput placeholder="" formControlName="houseStreet" name="houseStreet">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <mat-label>Número</mat-label>
+            <input matInput type="number" placeholder="" formControlName="number" name="number">
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <mat-label>Complemento</mat-label>
+            <input matInput placeholder="" formControlName="optionalAddOns" name="optionalAddOns">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="createMember()">Adicionar</button>
+</div>
