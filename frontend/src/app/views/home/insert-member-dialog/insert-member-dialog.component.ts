@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MemberService } from 'src/app/shared/service/member.service';
+import { UtilsService } from 'src/app/shared/service/utils.service';
 import { Member } from 'src/app/shared/model/member.model';
-import { Address } from 'src/app/shared/model/address.model';
 
 @Component({
   selector: 'app-insert-member-dialog',
@@ -16,10 +16,28 @@ export class InsertMemberDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<InsertMemberDialogComponent>,
     private fb: FormBuilder,
-    private rest: MemberService
+    private rest: MemberService,
+    private utils: UtilsService,
+    @Inject(MAT_DIALOG_DATA) public data: { isAddDialog: boolean, member?: Member }
   ) { }
     
   ngOnInit(): void {
+    if(this.data.member != null) {
+      this.memberForm = this.fb.group({
+        id: [this.data.member.id],
+        name: [this.data.member.name, [Validators.required]],
+        isBaptized: [this.data.member.isBaptized, [Validators.required]],
+        birthday: [new Date(this.data.member.birthday.replace(/(\d+[/])(\d+[/])/, '$2$1')), [Validators.required]],
+        baptismDate: [this.data.member.baptismDate ? new Date(this.data.member.baptismDate.replace(/(\d+[/])(\d+[/])/, '$2$1')) : null],
+        number: [this.data.member.address.number, [Validators.required]],
+        houseStreet: [this.data.member.address.houseStreet, [Validators.required]],
+        optionalAddOns: [this.data.member.address.optionalAddOns],
+        cep: [this.data.member.address.cep, [Validators.required]],
+      });
+      console.log(this.memberForm.value)
+      return;
+    }
+
     this.memberForm = this.fb.group({
       name: [null, [Validators.required]],
       isBaptized: [false, [Validators.required]],
@@ -27,39 +45,36 @@ export class InsertMemberDialogComponent implements OnInit {
       baptismDate: [null],
       number: [null, [Validators.required]],
       houseStreet: [null, [Validators.required]],
-      optionalAddOns: [null, [Validators.required]],
+      optionalAddOns: [null],
       cep: [null, [Validators.required]],
     });
   }
-
-  onIsBaptizedChange() {
-    let isBaptizedSelected = this.memberForm.value.isBaptized;
-    if(isBaptizedSelected == 'true') {
-      this.memberForm.get('baptismDate').setValidators([Validators.required]); // 5.Set Required Validator
-      this.memberForm.get('baptismDate').updateValueAndValidity();
-    } else {
-      this.memberForm.get('baptismDate').clearValidators();
-      this.memberForm.get('baptismDate').updateValueAndValidity();
-    }
-  }
     
   createMember(){
-    console.log(this.memberForm.value)
-    let member = new Member();
-    member.address = new Address();
-    member.name = this.memberForm.value.name;
-    member.isBaptized = this.memberForm.value.isBaptized;
-    member.birthday = this.memberForm.value.birthday;
-    member.baptismDate = this.memberForm.value.baptismDate;
-    member.address.number =  this.memberForm.value.number;
-    member.address.houseStreet = this.memberForm.value.houseStreet;
-    member.address.optionalAddOns = this.memberForm.value.optionalAddOns;
-    member.address.cep = this.memberForm.value.cep;
+    let member = this.utils.convertMemberFormToMemberClass(this.memberForm);
+    if(!this.memberForm.valid) {
+      this.utils.mensagemSnackBar("Preencha todos os campos obrigatórios!");
+      return;
+    }
 
     this.rest.postMember(member).subscribe(result => {});
     this.dialogRef.close(true);
     this.memberForm.reset();
-    //window.location.reload();
+    window.location.reload();
+  }
+
+  editMember() {
+    let member = this.utils.convertMemberFormToMemberClass(this.memberForm);
+    if(!this.memberForm.valid) {
+      this.utils.mensagemSnackBar("Preencha todos os campos obrigatórios!");
+      return;
+    }
+
+    console.log(member);
+    this.rest.updateMember(member.id, member).subscribe(result => {});
+    this.dialogRef.close(true);
+    this.memberForm.reset();
+    window.location.reload();
   }
 
   cancel(){

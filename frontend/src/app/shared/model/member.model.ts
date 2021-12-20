@@ -1,7 +1,7 @@
 import { Address } from "./address.model";
 
 export class Member {
-    id: string;
+    id: number;
     name: string;
     isBaptized: boolean;
     birthday: string;

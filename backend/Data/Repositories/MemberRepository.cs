@@ -26,8 +26,7 @@ namespace backend.Data.Repositories
 
         public async Task<Member> GetById(long id)
         {
-            return await _context.Member.Include(m => m.Address)
-                .AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.Member.Include(m => m.Address).FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<Member> Insert(Member newMember)

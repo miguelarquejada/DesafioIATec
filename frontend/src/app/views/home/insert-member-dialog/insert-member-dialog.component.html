@@ -1,51 +1,69 @@
-<h1 mat-dialog-title>Novo membro</h1>
+<h1 *ngIf="this.data.isAddDialog; else editTitle" mat-dialog-title>Adicionar Membro</h1>
+<ng-template #editTitle let-data>
+    <h1 mat-dialog-title>Atualizar Membro</h1>
+</ng-template>
 <div mat-dialog-content>
     <form class="d-flex flex-column" [formGroup]="memberForm">
         <h3>Dados do membro</h3>
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Nome</mat-label>
             <input matInput placeholder="" formControlName="name" name="name">
+            <mat-error *ngIf="memberForm.get('name').errors && memberForm.get('name').hasError('required')">
+                Nome é <strong>obrigatório</strong>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Dt. Nascimento</mat-label>
             <input matInput [matDatepicker]="picker1" formControlName="birthday">
+            <mat-error *ngIf="memberForm.get('birthday').errors && memberForm.get('birthday').hasError('required')">
+                Dt. Nascimento é <strong>obrigatório</strong>
+            </mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         
-        <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 5px;">
             <mat-label>Batizado</mat-label>
-            <mat-select formControlName="isBaptized" (selectionChange)="onIsBaptizedChange()">
+            <mat-select formControlName="isBaptized">
                 <mat-option [value]="false">Não</mat-option>
                 <mat-option [value]="true">Sim</mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Dt. Batismo</mat-label>
-            <input matInput [matDatepicker]="picker2" formControlName="birthday">
+            <input matInput [matDatepicker]="picker2" formControlName="baptismDate">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
         <h3 style="margin-top: 10px;">Dados de endereço</h3>
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Cep</mat-label>
             <input matInput type="number" placeholder="" formControlName="cep" name="cep">
+            <mat-error *ngIf="memberForm.get('cep').errors && memberForm.get('cep').hasError('required')">
+                Cep é <strong>obrigatório</strong>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Rua</mat-label>
             <input matInput placeholder="" formControlName="houseStreet" name="houseStreet">
+            <mat-error *ngIf="memberForm.get('houseStreet').errors && memberForm.get('houseStreet').hasError('required')">
+                Rua é <strong>obrigatório</strong>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Número</mat-label>
             <input matInput type="number" placeholder="" formControlName="number" name="number">
+            <mat-error *ngIf="memberForm.get('number').errors && memberForm.get('number').hasError('required')">
+                Número é <strong>obrigatório</strong>
+            </mat-error>
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%; margin-bottom: 5px;">
             <mat-label>Complemento</mat-label>
             <input matInput placeholder="" formControlName="optionalAddOns" name="optionalAddOns">
         </mat-form-field>
@@ -53,5 +71,8 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="createMember()">Adicionar</button>
+  <button *ngIf="this.data.isAddDialog; else editButton" mat-raised-button color="primary" (click)="createMember()">Adicionar</button>
+  <ng-template #editButton let-data>
+      <button mat-raised-button color="primary" (click)="editMember()">Atualizar</button>
+  </ng-template>
 </div>

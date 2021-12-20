@@ -19,11 +19,13 @@ export class HomeComponent implements OnInit {
   addMember(): void {
     const dialogRef = this.dialog.open(InsertMemberDialogComponent, {
       minWidth: '400px',
+      data: { 
+        isAddDialog: true 
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // window.location.reload();
     });
   }
 }

@@ -26,7 +26,15 @@ export class MemberService {
       return this.httpClient.get<Member>(this.apiUrl  + "?id=" + id);
     }
 
-    public postMember(member: any): Observable<Member> {
-        return this.httpClient.post<any>(this.apiUrl, member, this.httpOptions);
+    public postMember(member: Member): Observable<Member> {
+        return this.httpClient.post<Member>(this.apiUrl, member, this.httpOptions);
     }
+
+    public deleteMember(id: number): Observable<any> {
+       return this.httpClient.delete<any>(this.apiUrl  + "/" + id);
+    }
+
+    public updateMember(id: number, updatedMember: Member): Observable<any> {
+      return this.httpClient.put<any>(this.apiUrl  + "/" + id, updatedMember);
+   }
 }

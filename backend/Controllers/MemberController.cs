@@ -81,7 +81,7 @@ namespace backend.Controllers
             if (member == null)
                 return NotFound();
 
-            _memberRepository.Delete(member);
+            await _memberRepository.Delete(member);
             return NoContent();
         }
     }
