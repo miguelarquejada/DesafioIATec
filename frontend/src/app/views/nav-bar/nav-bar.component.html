@@ -1,0 +1,9 @@
+<mat-toolbar>
+    <mat-toolbar-row style="font-size:1.5rem; height: 80px;">
+        <span style="margin-right: 20px;">Desafio IATec</span>
+        <button style="margin-right: 5px;" mat-raised-button color="primary" (click)="addMember()"><mat-icon>add</mat-icon> Membro</button>
+        <a style="margin-right: 5px;" mat-button [routerLink]="['/']">Membros</a>
+        <a style="margin-right: 5px;" mat-button [routerLink]="['/relatorio/geral']">Relatório Geral</a>
+        <a mat-button [routerLink]="['/relatorio/batizados']">Relatório Batizados</a>
+    </mat-toolbar-row>
+</mat-toolbar>
