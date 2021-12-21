@@ -17,7 +17,7 @@ export class ListMembersComponent implements OnInit {
   constructor(
     private rest: MemberService,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {

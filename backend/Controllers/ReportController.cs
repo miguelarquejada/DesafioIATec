@@ -44,7 +44,13 @@ namespace backend.Controllers
         public async Task<ActionResult<IEnumerable<Member>>> GetBaptizedMembers()
         {
             var members = await _memberRepository.GetAllBaptizedMembers();
-            return members.OrderBy(m => (DateTime.Now) - m.Birthday).ToList();
+            var now = DateTime.Now;
+            var birthdays = from dt in members
+                            orderby IsBeforeNow(now, dt.Birthday), dt.Birthday.Month, dt.Birthday.Day
+                            select dt;
+
+
+           return birthdays.ToList();
         }
 
         private int GetMemberAge(DateTime birthdayMember)
@@ -54,6 +60,12 @@ namespace backend.Controllers
                 age = age - 1;
 
             return age;
+        }
+
+        private static bool IsBeforeNow(DateTime now, DateTime dateTime)
+        {
+            return dateTime.Month < now.Month
+                || (dateTime.Month == now.Month && dateTime.Day < now.Day);
         }
     }
 }

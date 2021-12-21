@@ -28,6 +28,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReportMembersComponent } from './views/report-members/report-members.component';
 import { NavBarComponent } from './views/nav-bar/nav-bar.component';
 import { ReportMembersBaptizedComponent } from './views/report-members-baptized/report-members-baptized.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -37,12 +38,13 @@ import { ReportMembersBaptizedComponent } from './views/report-members-baptized/
     ListMembersComponent,
     ReportMembersComponent,
     NavBarComponent,
-    ReportMembersBaptizedComponent
+    ReportMembersBaptizedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    TextMaskModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatCardModule,

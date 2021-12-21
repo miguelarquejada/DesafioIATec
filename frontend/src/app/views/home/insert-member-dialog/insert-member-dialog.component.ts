@@ -19,7 +19,7 @@ export class InsertMemberDialogComponent implements OnInit {
     private rest: MemberService,
     private utils: UtilsService,
     @Inject(MAT_DIALOG_DATA) public data: { isAddDialog: boolean, member?: Member }
-  ) { }
+  ) {}
     
   ngOnInit(): void {
     if(this.data.member != null) {
@@ -64,13 +64,11 @@ export class InsertMemberDialogComponent implements OnInit {
   }
 
   editMember() {
-    let member = this.utils.convertMemberFormToMemberClass(this.memberForm);
     if(!this.memberForm.valid) {
       this.utils.mensagemSnackBar("Preencha todos os campos obrigatórios!");
       return;
     }
-
-    console.log(member);
+    let member = this.utils.convertMemberFormToMemberClass(this.memberForm);
     this.rest.updateMember(member.id, member).subscribe(result => {});
     this.dialogRef.close(true);
     this.memberForm.reset();
