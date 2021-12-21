@@ -60,7 +60,7 @@ export class InsertMemberDialogComponent implements OnInit {
     this.rest.postMember(member).subscribe(result => {});
     this.dialogRef.close(true);
     this.memberForm.reset();
-    window.location.reload();
+    window.location.href = "/";
   }
 
   editMember() {
@@ -74,7 +74,7 @@ export class InsertMemberDialogComponent implements OnInit {
     this.rest.updateMember(member.id, member).subscribe(result => {});
     this.dialogRef.close(true);
     this.memberForm.reset();
-    window.location.reload();
+    window.location.href = "/";
   }
 
   cancel(){

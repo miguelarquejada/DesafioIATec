@@ -3,6 +3,7 @@ import { Member } from 'src/app/shared/model/member.model';
 import { MemberService } from 'src/app/shared/service/member.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InsertMemberDialogComponent } from '../insert-member-dialog/insert-member-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-members',
@@ -11,18 +12,42 @@ import { InsertMemberDialogComponent } from '../insert-member-dialog/insert-memb
 })
 export class ListMembersComponent implements OnInit {
   members: Member[];
+  search : string = "";
 
   constructor(
     private rest: MemberService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getMembers();
+    this.route.queryParams
+      .subscribe(params => {
+        if(params.search) {
+          let name: string = params.search;
+          this.search = name;
+          this.getMembersByName(name);
+        } else {
+          this.getMembers();
+        }
+      }
+    );
   }
 
   getMembers(){
     this.rest.getMembers().subscribe(data => {
+      this.members = data;
+
+      this.members.forEach(member => {
+        member.birthday = new Date(member.birthday).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+        if(member.baptismDate)
+          member.baptismDate = new Date(member.baptismDate).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+      })
+    })
+  }
+
+  getMembersByName(name: string){
+    this.rest.getMembersByName(name).subscribe(data => {
       this.members = data;
 
       this.members.forEach(member => {
@@ -57,6 +82,10 @@ export class ListMembersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  searchMember(){
+    window.location.href = "?search="+this.search;
   }
 
   displayedColumns: string[] = ['name', 'birthday', 'baptismDate', 'address.houseStreet', 'actions'];

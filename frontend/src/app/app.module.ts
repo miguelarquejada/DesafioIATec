@@ -27,6 +27,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReportMembersComponent } from './views/report-members/report-members.component';
 import { NavBarComponent } from './views/nav-bar/nav-bar.component';
+import { ReportMembersBaptizedComponent } from './views/report-members-baptized/report-members-baptized.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NavBarComponent } from './views/nav-bar/nav-bar.component';
     InsertMemberDialogComponent,
     ListMembersComponent,
     ReportMembersComponent,
-    NavBarComponent
+    NavBarComponent,
+    ReportMembersBaptizedComponent
   ],
   imports: [
     BrowserModule,

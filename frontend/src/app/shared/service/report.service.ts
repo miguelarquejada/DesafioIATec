@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Report } from '../model/report.model';
 import { Observable } from 'rxjs';
+import { Member } from '../model/member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ReportService {
     return this.httpClient.get<Report>(this.apiUrl+"/members");
   }
 
-  // public getReportBaptized(): Observable<Report> {
-  //   return this.httpClient.get<Report>(this.apiUrl+"/members/baptized");
-  // }
+  public getReportBaptized(): Observable<Member[]> {
+    return this.httpClient.get<Member[]>(this.apiUrl+"/members/baptized");
+  }
 }

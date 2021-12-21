@@ -39,6 +39,14 @@ namespace backend.Controllers
             return member;
         }
 
+        [HttpGet("search/{name}")]
+        public async Task<ActionResult<IEnumerable<Member>>> GetByName(string name)
+        {
+            var members = await _memberRepository.GetAll();
+            var result = members.Where(m => m.Name.ToUpper().Contains(name.ToUpper())).ToList();
+            return Ok(result);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(long id, Member updatedMember)
         {

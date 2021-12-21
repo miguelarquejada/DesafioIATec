@@ -26,6 +26,10 @@ export class MemberService {
       return this.httpClient.get<Member>(this.apiUrl  + "?id=" + id);
     }
 
+    public getMembersByName(name: string): Observable<Member[]> {
+      return this.httpClient.get<Member[]>(this.apiUrl  + "/search/" + name);
+    }
+
     public postMember(member: Member): Observable<Member> {
         return this.httpClient.post<Member>(this.apiUrl, member, this.httpOptions);
     }
