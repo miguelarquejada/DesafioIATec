@@ -9,6 +9,7 @@ import { ReportService } from 'src/app/shared/service/report.service';
 })
 export class ReportMembersComponent implements OnInit {
   report: Report;
+  haveData: boolean;
 
   constructor(
     private rest: ReportService,
@@ -20,7 +21,10 @@ export class ReportMembersComponent implements OnInit {
 
   getReport(){
     this.rest.getReport().subscribe(data => {
-      this.report = data
+      this.report = data;
+      if(data.memberTotal > 0)
+        this.haveData = true;
+
       if(this.report.mostRecentBaptism)
         this.report.mostRecentBaptism = new Date(this.report.mostRecentBaptism).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
     });

@@ -1,4 +1,5 @@
 
+
 # Desafio IATec 
 
 
@@ -8,6 +9,7 @@
 - SqlServer
 - Entity Framework Core
 - Angular / Angular Material
+- Swagger
 
 ## Features
 - CRUD de membros com entidade endereço inclusa
@@ -21,6 +23,7 @@ Backend (se certificar que está rodando em https://localhost:5001 - irá realiz
 cd backend
 dotnet run
 ```
+Swagger: https://localhost:5001/swagger
 
 Frontend:
 ```sh

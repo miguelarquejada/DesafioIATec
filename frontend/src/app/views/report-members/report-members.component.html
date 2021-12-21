@@ -3,7 +3,7 @@
     <h1>Relatório</h1>
     <h3>Relatório geral de membros</h3>
 </div>
-<mat-card style="font-size: 1.2em; padding: 20px; margin: 20px;">
+<mat-card *ngIf="this.haveData; else noData" style="font-size: 1.2em; padding: 20px; margin: 20px;">
     <div>
         <div style="margin-bottom: 20px;"><b>Total de membros: </b>{{report.memberTotal}}</div>
         <div style="margin-bottom: 20px;"><b>Total de membros batizados: </b>{{report.totalBaptizedMembers}}</div>
@@ -12,3 +12,8 @@
         <div style="margin-bottom: 20px;"><b>Data batismo mais recente: </b>{{report.mostRecentBaptism}}</div>
     </div>
 </mat-card>
+<ng-template #noData>
+    <div style="font-size: 1.2em; margin: 20px;">
+        <h2 mat-dialog-title>Sem dados. Insira pelo menos um membro.</h2>
+    </div>
+</ng-template>
