@@ -57,10 +57,11 @@ export class InsertMemberDialogComponent implements OnInit {
       return;
     }
 
-    this.rest.postMember(member).subscribe(result => {});
-    this.dialogRef.close(true);
-    this.memberForm.reset();
-    window.location.href = "/";
+    this.rest.postMember(member).subscribe(result => {
+      this.dialogRef.close(true);
+      this.memberForm.reset();
+      window.location.href = "/";
+    });
   }
 
   editMember() {
@@ -69,10 +70,11 @@ export class InsertMemberDialogComponent implements OnInit {
       return;
     }
     let member = this.utils.convertMemberFormToMemberClass(this.memberForm);
-    this.rest.updateMember(member.id, member).subscribe(result => {});
-    this.dialogRef.close(true);
-    this.memberForm.reset();
-    window.location.href = "/";
+    this.rest.updateMember(member.id, member).subscribe(result => {
+      this.dialogRef.close(true);
+      this.memberForm.reset();
+      window.location.href = "/";
+    });
   }
 
   cancel(){

@@ -59,13 +59,15 @@ export class ListMembersComponent implements OnInit {
   }
 
   deleteMember(id: number){
-    this.rest.deleteMember(id).subscribe(data => {});
-    window.location.reload();
+    this.rest.deleteMember(id).subscribe(data => {
+      window.location.reload();
+    });
   }
 
   updateMember(id: number, updatedMember: Member){
-    this.rest.updateMember(id, updatedMember).subscribe(data => {})
-    window.location.reload();
+    this.rest.updateMember(id, updatedMember).subscribe(data => {
+      window.location.reload();
+    })
   }
 
   editMember(id: number){
