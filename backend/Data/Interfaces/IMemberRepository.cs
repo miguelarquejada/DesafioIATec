@@ -77,6 +77,6 @@ namespace backend.Data.Interfaces
         /// Get most recent baptism date
         /// </summary>
         /// <returns></returns>
-        Task<DateTime> GetMostRecentBaptism();
+        Task<DateTime?> GetMostRecentBaptism();
     }
 }

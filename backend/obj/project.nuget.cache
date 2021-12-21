@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "riT9AT481tyK9xTDz+xHNRFJHbTWV7raGSI4OQWTdnMjfUvT2RJqR98C8+nH+HnOPjQglAchnDEXCwhFgMpxyA==",
+  "dgSpecHash": "fA8xhkX7S3ignQfWfL4A1SUVcdzfEb9lGNoYVnIBqF4gcmfc8Q8Lfzoi8fWY2J+Sa8WY5rYyxE/nMLlnXjRrJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Miguel Arquejada\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Miguel Arquejada\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

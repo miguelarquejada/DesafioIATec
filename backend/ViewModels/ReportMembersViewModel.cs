@@ -11,6 +11,6 @@ namespace backend.ViewModels
         public int TotalBaptizedMembers { get; set; }
         public string OldestMember { get; set; }
         public int OldestMemberAge  { get; set; }
-        public DateTime MostRecentBaptism  { get; set; }
+        public DateTime? MostRecentBaptism  { get; set; }
     }
 }

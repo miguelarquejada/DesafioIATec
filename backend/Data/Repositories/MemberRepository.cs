@@ -87,10 +87,10 @@ namespace backend.Data.Repositories
                 .AsNoTracking().OrderBy(m => m.Birthday).FirstOrDefaultAsync();
         }
 
-        public async Task<DateTime> GetMostRecentBaptism()
+        public async Task<DateTime?> GetMostRecentBaptism()
         {
             var member = await _context.Member.OrderByDescending(m => m.BaptismDate).FirstOrDefaultAsync();
-            return (DateTime)member.BaptismDate;
+            return member.BaptismDate;
         }
 
         public async Task<IEnumerable<Member>> GetAllBaptizedMembers()

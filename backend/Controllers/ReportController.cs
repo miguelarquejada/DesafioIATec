@@ -25,17 +25,27 @@ namespace backend.Controllers
         public async Task<ActionResult<ReportMembersViewModel>> GetReportMembers()
         {
             var memberTotal = await _memberRepository.GetMemberTotal();
-            var totalBaptizedMembers = await _memberRepository.GetTotalBaptizedMembers();
-            var oldestMember = await _memberRepository.GetOldestMember();
-            var mostRecentBaptism = await _memberRepository.GetMostRecentBaptism();
+            
+            if (memberTotal > 0)
+            {
+                var totalBaptizedMembers = await _memberRepository.GetTotalBaptizedMembers();
+                var oldestMember = await _memberRepository.GetOldestMember();
+                var mostRecentBaptism = await _memberRepository.GetMostRecentBaptism();
+                
+                return new ReportMembersViewModel
+                {
+                    MemberTotal = memberTotal,
+                    TotalBaptizedMembers = totalBaptizedMembers,
+                    OldestMember = oldestMember.Name,
+                    OldestMemberAge = GetMemberAge(oldestMember.Birthday),
+                    MostRecentBaptism = mostRecentBaptism
+                };
+            }
 
             return new ReportMembersViewModel
             {
-                MemberTotal = memberTotal,
-                TotalBaptizedMembers = totalBaptizedMembers,
-                OldestMember = oldestMember.Name,
-                OldestMemberAge = GetMemberAge(oldestMember.Birthday),
-                MostRecentBaptism = mostRecentBaptism
+                MemberTotal = 0,
+                TotalBaptizedMembers = 0
             };
         }
 

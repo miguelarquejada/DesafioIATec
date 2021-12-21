@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\backend.csproj": {}
+    "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\backend.csproj": {
+    "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\Miguel Arquejada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\DesafioIatec\\backend\\obj\\",
+        "outputPath": "C:\\Users\\Miguel Arquejada\\Desktop\\projetos\\teste\\DesafioIATec\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
