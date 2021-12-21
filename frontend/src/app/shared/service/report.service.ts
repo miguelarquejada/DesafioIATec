@@ -9,7 +9,7 @@ import { Member } from '../model/member.model';
 })
 export class ReportService {
 
-  apiUrl = 'https://localhost:44349/report';
+  apiUrl = 'https://localhost:5001/report';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

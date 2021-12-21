@@ -7,7 +7,7 @@ import { Member } from '../model/member.model';
   providedIn: 'root'
 })
 export class MemberService {
-    apiUrl = 'https://localhost:44349/member';
+    apiUrl = 'https://localhost:5001/member';
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
